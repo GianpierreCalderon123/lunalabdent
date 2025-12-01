@@ -283,10 +283,11 @@ function sendWhatsApp(){
     let num = document.getElementById("phoneInput").value.trim();
     if(!num){ alert("Ingresa tu número ✔️"); return; }
     const clinica = "51957277664";
-    const msg = encodeURIComponent("Hola! Quiero mi descuento de blanqueamiento dental 🦷✨");
+    const msg = encodeURIComponent("Hola! Soy "+phoneInput.value +" Quiero mi descuento de blanqueamiento dental 🦷✨");
     window.open(`https://wa.me/${clinica}?text=${msg}`,"_blank");
 }
 </script>
 
 </body>
 </html>
+
