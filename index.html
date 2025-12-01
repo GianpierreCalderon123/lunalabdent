@@ -4,16 +4,18 @@
 <meta charset="UTF-8">
 <title>LunaLab Dent — La sonrisa de Mateo</title>
 <style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+    :root {
+        --fs-h1: clamp(20px, 4vw, 32px);
+        --fs-text: clamp(14px, 2.5vw, 20px);
+        --fs-button: clamp(14px, 2.5vw, 20px);
+        --fs-small: clamp(12px, 2vw, 16px);
     }
 
     body {
         background: #0c1226;
         font-family: 'Verdana', sans-serif;
         color: #ffffff;
+        margin: 0;
         overflow: hidden;
     }
 
@@ -24,7 +26,7 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 20px;
+        padding: clamp(10px, 3vw, 40px);
     }
 
     .view {
@@ -32,7 +34,6 @@
         width: 100%;
         height: 100%;
     }
-
     .active-view {
         display: flex;
     }
@@ -47,153 +48,82 @@
     }
 
     .big-text {
-        font-size: 22px;
+        font-size: var(--fs-text);
         line-height: 1.5;
         max-width: 800px;
+    }
+
+    #introTitle {
+        font-size: var(--fs-h1);
+        margin-bottom: 18px;
     }
 
     .btn {
         background: #00b7ff;
         border: none;
         border-radius: 14px;
-        font-size: 20px;
+        font-size: var(--fs-button);
         padding: 12px 22px;
         color: white;
         margin-top: 22px;
         cursor: pointer;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        transition: transform 0.2s ease;
         box-shadow: 0 6px 16px rgba(0,0,0,0.4);
     }
     .btn:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 22px rgba(0,0,0,0.5);
-    }
-
-    /* INTRO: imagen de Mateo */
-    #introTitle {
-        font-size: 26px;
-        margin-bottom: 18px;
+        transform: scale(1.05);
     }
 
     #mateoImg {
-        width: 260px;
-        max-width: 70%;
+        width: clamp(180px, 35vw, 260px);
         border-radius: 24px;
         box-shadow: 0 10px 30px rgba(0,0,0,0.6);
         margin-bottom: 20px;
     }
 
-    /* PANTALLA DEL JUEGO SIMPLE */
-    #whiteningGame {
-        width: 100%;
-        max-width: 900px;
-        margin: auto;
-    }
-
+    /* JUEGO */
     #whiteningGame h2 {
-        font-size: 26px;
-        margin-bottom: 10px;
+        font-size: var(--fs-h1);
     }
-
     #whiteningGame p {
-        font-size: 16px;
-        margin-bottom: 16px;
-        opacity: 0.9;
-    }
-
-    #teethRow {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px;
-        margin-top: 10px;
+        font-size: var(--fs-small);
     }
 
     .tooth-card {
         background: #141b36;
         border-radius: 18px;
         padding: 10px 16px;
-        width: 120px;
-        min-height: 150px;
+        width: clamp(100px, 22vw, 130px);
+        min-height: clamp(135px, 28vw, 170px);
         display: flex;
         flex-direction: column;
         align-items: center;
         justify-content: space-between;
-        box-shadow: 0 8px 20px rgba(0,0,0,0.45);
         cursor: pointer;
-        transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
-    }
-
-    .tooth-card:active {
-        transform: scale(0.97);
-        box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.45);
+        transition: transform 0.15s ease;
     }
 
     .tooth-emoji {
-        font-size: 46px;
-        margin-bottom: 6px;
+        font-size: clamp(36px, 6vw, 48px);
     }
-
     .tooth-status {
-        font-size: 16px;
-        margin-bottom: 4px;
+        font-size: var(--fs-small);
     }
-
     .tooth-level {
-        font-size: 12px;
-        opacity: 0.8;
-    }
-
-    .tooth-card.level-3 {
-        background: #4b2630;
-    }
-
-    .tooth-card.level-2 {
-        background: #58452b;
-    }
-
-    .tooth-card.level-1 {
-        background: #345043;
-    }
-
-    .tooth-card.level-0 {
-        background: #1b3b5c;
-    }
-
-    .tooth-card.level-0 .tooth-status {
-        color: #7bed9f;
+        font-size: var(--fs-small);
     }
 
     #progressText {
         margin-top: 18px;
-        font-size: 18px;
+        font-size: var(--fs-button);
     }
 
-    /* RESULTADO FINAL */
-    #endScreen .big-text {
-        font-size: 22px;
-    }
-
-    #phoneBox{
-        margin-top: 12px;
-    }
-    #phoneInput{
-        padding: 10px;
-        font-size: 18px;
-        width: 260px;
-        border-radius: 10px;
-        border: none;
-        text-align: center;
-    }
-    #discountBtn{
-        background: #32ff7e;
-        border: none;
-        padding: 12px 20px;
-        border-radius: 12px;
-        font-size: 18px;
-        margin-top: 10px;
-        cursor: pointer;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+    #warningText {
+        margin-top: 8px;
+        font-size: var(--fs-small);
+        color: #ff7675;
+        display: none;
     }
 </style>
 </head>
@@ -201,212 +131,140 @@
 
 <div id="screen">
 
-    <!-- PANTALLA 1: IMAGEN DE MATEO -->
+    <!-- intro -->
     <div id="introView" class="view active-view">
         <div class="centered-column">
             <h1 id="introTitle">¿Quieres saber la historia de Mateo?</h1>
-            <!-- Imagen inicial que guardaste como img123.jpg -->
-            <img id="mateoImg" src="img123.jpg" alt="Mateo tímido tapándose la boca">
+            <img id="mateoImg" src="img123.jpg">
             <button class="btn" onclick="goToStory()">Sí, quiero saberla 👉</button>
         </div>
     </div>
 
-    <!-- PANTALLA 2: HISTORIA -->
+    <!-- historia -->
     <div id="storyView" class="view">
-        <div class="centered-column big-text" id="story">
+        <div class="centered-column big-text">
             Había una vez un niño de 12 años llamado <b>Mateo</b>, muy tímido.<br><br>
             Siempre se tapaba la boca al sonreír… porque sus dientes tenían manchas amarillas.<br><br>
             Pero este año era especial:<br>
             <b>la cena de Navidad</b> se acercaba.<br><br>
-            Iba a ver a su familia…<br>y a una persona especial llamada <b>Lucía</b>.<br><br>
-            Mateo solo quería una cosa:<br>
-            <b>sonreír sin miedo.</b><br><br>
-            Un día encontró un lugar llamado:<br><br>
+            Mateo solo quería sonreír sin miedo.<br><br>
+            Entonces encontró:<br><br>
             <b>LunaLab Dent — La ciencia de tu sonrisa.</b><br><br>
-            El doctor le explicó que, con un blanqueamiento seguro,<br>
-            su sonrisa podía recuperar todo su brillo.<br><br>
             <button class="btn" onclick="goToGame()">Comenzar blanqueamiento 🦷✨</button>
         </div>
     </div>
 
-    <!-- PANTALLA 3: JUEGO SENCILLO DE BLANQUEAMIENTO -->
+    <!-- juego -->
     <div id="gameView" class="view">
         <div class="centered-column">
-            <div id="whiteningGame">
-                <h2>Ayuda a Mateo a blanquear su sonrisa</h2>
-                <p>
-                    Toca o haz clic en cada diente para aplicar luz de blanqueamiento.
-                    <br>Cada toque lo hace más blanco. Cuando todos estén blancos, ¡Mateo estará listo para Navidad!
-                </p>
+            <h2>Blanquea los dientes de Mateo</h2>
+            <p>Presiona cada diente hasta que esté totalmente blanco</p>
 
-                <div id="teethRow">
-                    <!-- Se rellena desde JavaScript -->
-                </div>
+            <div id="teethRow" style="display:flex; flex-wrap:wrap; gap:16px; justify-content:center;"></div>
 
-                <div id="progressText"></div>
-
-                <button class="btn" style="margin-top:18px;" onclick="goBackToStory()">Volver a la historia</button>
-            </div>
+            <div id="progressText"></div>
+            <div id="warningText">👉 Aún faltan dientes por blanquear para continuar la historia</div>
         </div>
     </div>
 
-    <!-- PANTALLA 4: FINAL + WHATSAPP -->
+    <!-- final -->
     <div id="endScreen" class="view">
         <div class="centered-column big-text">
             ¡Felicitaciones! 🎄😁<br><br>
             Mateo llegó a Navidad con una sonrisa blanca,<br>
             segura y llena de luz.<br><br>
-
-            Y ahora pregunto…<br><br>
-
-            <b>¿Tú también quieres llegar a una bonita Navidad como Mateo,<br>
-            con una sonrisa hermosa y brillante?</b><br><br>
-
-            Déjanos tu nombre y te mandaremos un<br>
-            <b>descuento especial por WhatsApp 💚</b><br><br>
-
-            <div id="phoneBox">
-                <input id="phoneInput" type="text" placeholder="+51 9xx xxx xxx">
-                <br>
-                <button id="discountBtn" onclick="sendWhatsApp()">Recibir descuento 🎁</button>
-            </div>
+            <b>¿Tú también quieres?</b><br><br>
+            Déjanos tu nombre y te enviamos descuento por WhatsApp 💚<br><br>
+            <input id="phoneInput" type="text" placeholder=" Mateo Sonrisa Perfecta	" style="padding:10px; font-size:var(--fs-text); width:260px; border-radius:10px;">
+            <br>
+            <button class="btn" onclick="sendWhatsApp()">Recibir descuento 🎁</button>
         </div>
     </div>
 
 </div>
 
 <script>
-/* ------------ CAMBIO DE PANTALLAS ------------ */
-function showView(id) {
+function goToStory(){ showView('storyView'); }
+function goToGame(){ showView('gameView'); }
+function showView(id){
     document.querySelectorAll('.view').forEach(v => v.classList.remove('active-view'));
     document.getElementById(id).classList.add('active-view');
 }
 
-function goToStory(){
-    showView('storyView');
-}
-function goToGame(){
-    showView('gameView');
-}
-function goBackToStory(){
-    showView('storyView');
-}
-function showEndScreenFromGame(){
-    showView('endScreen');
-}
+/* 🔊 sonidos */
+const s_laser = new Audio("https://assets.mixkit.co/sfx/download/mixkit-player-select-notification-945.wav");
+const s_clean = new Audio("https://assets.mixkit.co/sfx/download/mixkit-achievement-bell-600.wav");
+const s_win = new Audio("https://assets.mixkit.co/sfx/download/mixkit-audience-light-applause-354.wav");
 
-/* ------------ WHATSAPP DESCUENTO ------------ */
-function sendWhatsApp(){
-    let numUsuario = document.getElementById("phoneInput").value.trim();
-    if(numUsuario === ""){
-        alert("Por favor ingresa tu número (ej. +51 9xx xxx xxx).");
-        return;
-    }
-
-    // Número fijo de la clínica (Perú): 957 277 664
-    const clinicaNumber = "51957277664";
-
-    let msg = encodeURIComponent(
-        "Hola, soy " + numUsuario +
-        ". Quiero mi descuento especial para blanqueamiento dental en LunaLab Dent 🦷✨"
-    );
-
-    window.open("https://wa.me/" + clinicaNumber + "?text=" + msg, "_blank");
-}
-
-/* ------------ JUEGO SENCILLO: TOCA EL DIENTE ------------ */
 const TOTAL_TEETH = 6;
-const MAX_LEVEL = 3; // 3 = muy manchado, 0 = blanco perfecto
+const MAX_LEVEL = 3;
 let stainLevels = new Array(TOTAL_TEETH).fill(MAX_LEVEL);
 
-function getStatusText(level){
-    switch(level){
-        case 3: return "Muy manchado";
-        case 2: return "Menos manchado";
-        case 1: return "Casi blanco";
-        case 0: return "Blanco perfecto";
-        default: return "";
-    }
-}
-
-function getEmoji(level){
-    // Cambiamos ligeramente el emoji según limpieza
-    if(level === 3) return "😬";
-    if(level === 2) return "🙂";
-    if(level === 1) return "😊";
-    return "😄";
-}
-
 function updateToothCard(index){
-    const card = document.querySelector('.tooth-card[data-index="'+index+'"]');
-    const level = stainLevels[index];
-
-    card.classList.remove("level-0","level-1","level-2","level-3");
-    card.classList.add("level-" + level);
-
-    card.querySelector('.tooth-status').textContent = getStatusText(level);
-    card.querySelector('.tooth-level').textContent = "Toques restantes: " + level;
-    card.querySelector('.tooth-emoji').textContent = "🦷 " + getEmoji(level);
-
-    if(level === 0){
-        card.style.cursor = "default";
-    }
+    const card = document.querySelector(`.tooth-card[data-i="${index}"]`);
+    const lvl = stainLevels[index];
+    card.querySelector(".tooth-emoji").textContent = ["😄","😊","🙂","😬"][lvl];
+    card.querySelector(".tooth-status").textContent =
+        lvl === 0 ? "Perfecto" :
+        lvl === 1 ? "Casi" :
+        lvl === 2 ? "Manchado" :
+        "Muy manchado";
+    card.querySelector(".tooth-level").textContent =
+        lvl === 0 ? "" : `Toques restantes: ${lvl}`;
 }
 
 function updateProgressText(){
     const cleaned = stainLevels.filter(l => l === 0).length;
-    const total = stainLevels.length;
-    const progressText = document.getElementById("progressText");
+    document.getElementById("progressText").textContent =
+        `Dientes limpios: ${cleaned}/${TOTAL_TEETH}`;
 
-    if(cleaned < total){
-        progressText.textContent = "Dientes blancos: " + cleaned + " / " + total;
-    } else {
-        progressText.textContent = "¡Todos los dientes están blancos! ✨";
-        // pequeña pausa y luego pantalla final
-        setTimeout(() => {
-            showEndScreenFromGame();
-        }, 900);
+    if(cleaned === TOTAL_TEETH){
+        s_win.play();
+        setTimeout(()=>showView('endScreen'),1200);
     }
 }
 
-function handleToothClick(index){
-    if(stainLevels[index] === 0) return; // ya está limpio
+function handleToothClick(i){
+    if(stainLevels[i] === 0) return;
 
-    stainLevels[index] = Math.max(0, stainLevels[index] - 1);
-    updateToothCard(index);
+    stainLevels[i]--;
+    s_laser.play();
+    if(stainLevels[i] === 0) s_clean.play();
+
+    updateToothCard(i);
     updateProgressText();
 }
 
-function initWhiteningGame(){
+function initGame(){
     const row = document.getElementById("teethRow");
     row.innerHTML = "";
     stainLevels = new Array(TOTAL_TEETH).fill(MAX_LEVEL);
 
-    for(let i=0; i<TOTAL_TEETH; i++){
-        const card = document.createElement("div");
-        card.className = "tooth-card level-" + MAX_LEVEL;
-        card.dataset.index = i;
-
-        card.innerHTML = `
-            <div class="tooth-emoji">🦷 ${getEmoji(MAX_LEVEL)}</div>
-            <div class="tooth-status">${getStatusText(MAX_LEVEL)}</div>
-            <div class="tooth-level">Toques restantes: ${MAX_LEVEL}</div>
+    for(let i=0;i<TOTAL_TEETH;i++){
+        const d=document.createElement("div");
+        d.className="tooth-card";
+        d.dataset.i=i;
+        d.innerHTML=`
+            <div class="tooth-emoji">😬</div>
+            <div class="tooth-status">Muy manchado</div>
+            <div class="tooth-level">Toques restantes: 3</div>
         `;
-
-        card.addEventListener("click", () => handleToothClick(i));
-        card.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            handleToothClick(i);
-        }, {passive:false});
-
-        row.appendChild(card);
+        d.onclick = ()=>handleToothClick(i);
+        row.appendChild(d);
     }
-
     updateProgressText();
 }
 
-// Inicializa el juego cuando se carga la página
-document.addEventListener("DOMContentLoaded", initWhiteningGame);
+document.addEventListener("DOMContentLoaded", initGame);
+
+/* WhatsApp */
+function sendWhatsApp(){
+    const num = document.getElementById("phoneInput").value.trim();
+    if(!num){ alert("Ingresa tu número ✔️"); return; }
+    const clinica = "51957277664";
+    const msg = encodeURIComponent("Hola, quiero mi descuento especial para blanqueamiento dental 🦷✨");
+    window.open(`https://wa.me/${clinica}?text=${msg}`, "_blank");
+}
 </script>
 
 </body>
